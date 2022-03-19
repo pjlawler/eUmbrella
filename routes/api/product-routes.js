@@ -44,7 +44,7 @@ router.get('/:id', (req, res) => {
   })
   .then(dbProductData => {
     if(!dbProductData) {
-      res.status(404).json({message: 'No product found with this id'})
+      res.status(404).json({message: 'Product ID not found in database'})
       return;
     } else {
       res.json(dbProductData);
@@ -62,7 +62,6 @@ router.get('/:id', (req, res) => {
   // find a single product by its `id`
   // be sure to include its associated Category and Tag data
 });
-
 // create new product
 router.post('/', (req, res) => {
   /* req.body should look like this...
@@ -94,7 +93,6 @@ router.post('/', (req, res) => {
       res.status(400).json(err);
     });
 });
-
 // update product
 router.put('/:id', (req, res) => {
   // update product data
@@ -136,9 +134,23 @@ router.put('/:id', (req, res) => {
       res.status(400).json(err);
     });
 });
-
+// delete a product
 router.delete('/:id', (req, res) => {
-  // delete one product by its `id` value
+  Product.destroy({
+    where: {
+      id: req.params.id
+    }    
+  })
+  .then(dbProductData => {
+    if(!dbProductData){
+      res.status(404).json({message: 'Product ID not found in database'})
+      return;
+    }
+    res.json(dbProductData);
+  })
+  .catch(err => {
+    res.status(500).json(err);
+  });
 });
 
 module.exports = router;
