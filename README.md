@@ -69,7 +69,7 @@
 - **/api/categories/:id**
   - - -
  ## *Installation Instructions*
-  After downloading files, make sure you run 'npm i' to install packages.  Also, create an .env from the example.env utilizing your mysql user account information.
+  After downloading files, make sure you run 'npm i' to install packages.  Also, create an .env from the .env.example utilizing your personal mysql user account information.
   - - -
  ## *Tests*
   Utilize an API Client such as Insomnia or Postman to test the api routes.
