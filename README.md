@@ -13,7 +13,7 @@
  ## *Description*
  ### My week #13 - Object-Relational Mapping (ORM) Challenge: E-commerce Back End
      
- Walkthrough Video: [https://www.google.com](https://www.google.com)
+ Walkthrough Video: [https://drive.google.com/file/d/1TkxzAb8hvMORp8hTVmlzI-ajZM8yIgth/view](https://drive.google.com/file/d/1TkxzAb8hvMORp8hTVmlzI-ajZM8yIgth/view)
  
  _ _ _
  ## *Usage Information*
