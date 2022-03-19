@@ -12,11 +12,12 @@ router.get('/', (req, res) => {
       // Category
       model: Category,
       attributes: ['id', 'category_name']
-    },       {
+    },
+    {
       model: Tag,
-      attributes: ['tag_name'],
-      through: ProductTag,
-      as: 'product_tags'
+      attributes: ['id', 'tag_name'],
+      through: { ProductTag, attributes: [] },
+      as: 'tags'
     }]
   })
   .then(dbProductData => res.json(dbProductData))
@@ -37,18 +38,17 @@ router.get('/:id', (req, res) => {
       attributes: ['id', 'category_name']
     },       {
       model: Tag,
-      attributes: ['tag_name'],
-      through: ProductTag,
-      as: 'product_tags'
+      attributes: ['id', 'tag_name'],
+      through: { ProductTag, attributes: [] },
+      as: 'tags'
     }]
   })
   .then(dbProductData => {
     if(!dbProductData) {
       res.status(404).json({message: 'Product ID not found in database'})
       return;
-    } else {
-      res.json(dbProductData);
     }
+    res.json(dbProductData);
   })
   .catch(err => {
     console.log(err);
@@ -87,7 +87,7 @@ router.post('/', (req, res) => {
       // if no product tags, just respond
       res.status(200).json(product);
     })
-    .then((productTagIds) => res.status(200).json(productTagIds))
+    .then(productTagIds => res.json(productTagIds))
     .catch((err) => {
       console.log(err);
       res.status(400).json(err);
